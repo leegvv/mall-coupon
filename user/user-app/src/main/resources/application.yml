@@ -1,6 +1,8 @@
 server:
   port: 8092
 spring:
+  application:
+    name: user-app
   datasource:
     druid:
       # 初始化时建立物理连接的个数。初始化发生在显示调用 init 方法，或者第一次 getConnection 时
@@ -57,3 +59,27 @@ spring:
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
+
+dubbo:
+  config-center:
+    timeout: 10000
+    address: zookeeper://127.0.0.1:2181
+  metadata-report:
+    address: zookeeper://127.0.0.1:2181
+  # Dubbo Protocol
+  protocol:
+    name: dubbo
+    port: 20880
+  ## Dubbo Registry
+  # 使用 zookeeper 注册中心暴露服务，注意要先开启 zookeeper
+  # 注册中心id
+  registry:
+    # 注册中心地址
+    address: zookeeper://127.0.0.1:2181
+    timeout: 10000
+  scan:
+    base-packages: net.arver.userapp.service
+
+app:
+  service:
+    version: 1.0.0

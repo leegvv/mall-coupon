@@ -15,8 +15,14 @@
     <name>coupon</name>
     <description>Demo project for Spring Boot</description>
 
+    <modules>
+        <module>coupon-app</module>
+        <module>coupon-service-api</module>
+    </modules>
+
     <properties>
         <java.version>1.8</java.version>
+
     </properties>
 
     <dependencies>
