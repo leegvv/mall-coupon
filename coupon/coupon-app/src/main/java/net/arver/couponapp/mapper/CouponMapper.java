@@ -1,6 +1,5 @@
 package net.arver.couponapp.mapper;
 
-import java.util.List;
 import net.arver.couponapp.entity.Coupon;
 import net.arver.couponapp.entity.CouponExample;
 import org.apache.ibatis.annotations.Delete;
@@ -15,6 +14,8 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
+
+import java.util.List;
 
 public interface CouponMapper {
     /**
@@ -57,11 +58,13 @@ public interface CouponMapper {
         "insert into t_coupon (id, code, ",
         "pic_url, achieve_amount, ",
         "reduce_amount, stock, ",
-        "title, status, create_time)",
+        "title, status, create_time, ",
+        "start_time, end_time)",
         "values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, ",
         "#{picUrl,jdbcType=VARCHAR}, #{achieveAmount,jdbcType=INTEGER}, ",
         "#{reduceAmount,jdbcType=INTEGER}, #{stock,jdbcType=INTEGER}, ",
-        "#{title,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})"
+        "#{title,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, ",
+        "#{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})"
     })
     int insert(Coupon record);
 
@@ -90,7 +93,9 @@ public interface CouponMapper {
         @Result(column="stock", property="stock", jdbcType=JdbcType.INTEGER),
         @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
         @Result(column="status", property="status", jdbcType=JdbcType.INTEGER),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="start_time", property="startTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="end_time", property="endTime", jdbcType=JdbcType.TIMESTAMP)
     })
     List<Coupon> selectByExample(CouponExample example);
 
@@ -102,7 +107,8 @@ public interface CouponMapper {
      */
     @Select({
         "select",
-        "id, code, pic_url, achieve_amount, reduce_amount, stock, title, status, create_time",
+        "id, code, pic_url, achieve_amount, reduce_amount, stock, title, status, create_time, ",
+        "start_time, end_time",
         "from t_coupon",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -115,7 +121,9 @@ public interface CouponMapper {
         @Result(column="stock", property="stock", jdbcType=JdbcType.INTEGER),
         @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
         @Result(column="status", property="status", jdbcType=JdbcType.INTEGER),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="start_time", property="startTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="end_time", property="endTime", jdbcType=JdbcType.TIMESTAMP)
     })
     Coupon selectByPrimaryKey(Integer id);
 
@@ -161,7 +169,9 @@ public interface CouponMapper {
           "stock = #{stock,jdbcType=INTEGER},",
           "title = #{title,jdbcType=VARCHAR},",
           "status = #{status,jdbcType=INTEGER},",
-          "create_time = #{createTime,jdbcType=TIMESTAMP}",
+          "create_time = #{createTime,jdbcType=TIMESTAMP},",
+          "start_time = #{startTime,jdbcType=TIMESTAMP},",
+          "end_time = #{endTime,jdbcType=TIMESTAMP}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Coupon record);

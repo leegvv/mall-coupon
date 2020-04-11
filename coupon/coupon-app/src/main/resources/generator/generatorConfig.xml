@@ -56,7 +56,11 @@
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
         <!-- <table tableName="risk_model_order" domainObjectName="DSRiskModelOrder" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
          <table tableName="tel_bill_record" domainObjectName="DSTelBillRecord" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+
+        <!--优惠券表-->
         <table tableName="t_coupon" domainObjectName="Coupon"></table>
-        <table tableName="t_user_coupon" domainObjectName="UserCoupon"></table>
+
+        <!--用户优惠券表-->
+        <!--<table tableName="t_user_coupon" domainObjectName="UserCoupon"></table>-->
     </context>
 </generatorConfiguration>
